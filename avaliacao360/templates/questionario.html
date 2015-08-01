@@ -1,0 +1,115 @@
+{% extends "home.html" %}
+{% block container %}
+
+<div class="container">
+          <form class="form-horizontal" action="salvar/" method="post" >
+           {% csrf_token %}
+          <fieldset>
+          <input value="{{quest.id}}" type="hidden" id="pkquestionario" name="pkquestionario">
+          <input value="{{plan.id}}" type="hidden" id="pkplan" name="pkplan">
+          <input value="{{plan.avaliador_id}}" type="hidden" id="pkavaliador" name="pkavaliador">
+          <input value="{{plan.funcionario_id}}" type="hidden" id="pkfuncionario" name="pkfuncionario">
+          <!-- Form Name -->
+          <legend>{{quest.descricao}}</legend>
+          {% for questoes in qquest %}
+          <!-- Textarea -->
+          <fieldset>
+          <div >
+            <legend><label  for="enunciado" style="font-size: 20px"> {{questoes.idquestao}}</label>
+            </legend>
+          </div>
+          <input value="{{questoes.idquestao.id}}" type="hidden" id="pkquestao" name="pkquestao">
+          
+          <!-- Prepended checkbox -->
+         
+          <div class="form-group">
+             <label class="col-md-1 control-label" for="alternativa"> A</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <span >     
+                    <input type="radio" value="alternativaA" name="{{questoes.idquestao.id}}">
+                    {{questoes.idquestao.alternativaA}}     
+                </span>
+                
+              </div>
+              
+            </div>
+          </div>
+       
+          <div class="form-group">
+            <label class="col-md-1 control-label" for="alternativa"> B</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <span >     
+                    <input type="radio" value="alternativaB" name="{{questoes.idquestao.id}}">
+                    {{questoes.idquestao.alternativaB}}     
+                </span>
+                 
+              </div>
+              
+            </div>
+          </div>
+       
+          <div class="form-group">
+            <label class="col-md-1 control-label" for="alternativa"> C</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <span >     
+                    <input type="radio" value="alternativaC" name="{{questoes.idquestao.id}}">
+                    {{questoes.idquestao.alternativaC}}                     
+                </span>
+                
+              </div>
+              
+            </div>
+          </div>
+         {% if questoes.idquestao.alternativaD != "" %}
+          <div class="form-group">
+            <label class="col-md-1 control-label" for="alternativa"> D</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <span >     
+                    <input type="radio" value="alternativaD" name="{{questoes.idquestao.id}}"> 
+                    {{questoes.idquestao.alternativaD}}    
+                </span>
+                
+              </div>
+              
+            </div>
+          </div>
+          {% endif %}
+      
+          {% if questoes.idquestao.alternativaE != "" %}
+          <div class="form-group">
+            <label class="col-md-1 control-label" for="alternativa"> E</label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <span >     
+                    <input type="radio" value="alternativaE" name="{{questoes.idquestao.id}}">
+                    {{questoes.idquestao.alternativaE}}     
+                </span>
+                
+              </div>
+              
+            </div>
+
+          </div>
+          {% endif %}
+       </fieldset>
+           <hr>
+          {% endfor %}
+          <!-- Button (Double) -->
+          <div class="form-group">
+            <label class="col-md-1 control-label" for="save"></label>
+            <div class="col-md-8">
+              <button id="save" name="save" class="btn btn-success" type="submit">Salvar</button>
+              <button id="cancel" name="cancel" class="btn btn-danger">Cancelar</button>
+            </div>
+          </div>
+
+          </fieldset>
+          </form>
+
+</div>
+{% endblock %}
+

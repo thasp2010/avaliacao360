@@ -5,12 +5,18 @@ from departamento.models import Departamento
 
 
 class Funcionario(models.Model):
-	nomeFuncionario = models.CharField(max_length = 60,null= False,blank = False)
+	nome            = models.CharField(max_length = 60,null= False,blank = False)
 	cpf             = models.CharField(max_length = 11,null= False,blank = False)
-	depFuncionario  = models.ForeignKey(Departamento,null= False,blank = False)
+	Departamento    = models.ForeignKey(Departamento,null= False,blank = False)
 	reponsavel      = models.ForeignKey('self',null= True,blank = True, related_name='responsavel')
-	usuarioFunc     = models.OneToOneField(User,unique = True,null= True,blank = True)
-
+	usuario         = models.OneToOneField(User,unique = True,null= True,blank = True)
+	isgerente       = models.NullBooleanField(verbose_name='Gerente')
+	
+	
 	def __unicode__(self):
-		return self.nomeFuncionario
+		return self.nome
+
+	class Meta:
+		verbose_name = 'Funcionario'
+		verbose_name_plural = 'Funcionarios'
 		
